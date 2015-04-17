@@ -118,7 +118,7 @@ static void sqlite_regexp(sqlite3_context* context, int argc, sqlite3_value** va
 
     NSString *dblocation = [options objectForKey:@"dblocation"];
     if (dblocation == NULL) dblocation = @"docs";
-    //NSLog(@"using db location: %@", dblocation);
+    NSLog(@"using db location: %@", dblocation);
 
     NSString *dbname = [self getDBPath:dbfilename at:dblocation];
 

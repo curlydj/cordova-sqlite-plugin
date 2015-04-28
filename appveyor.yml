@@ -3,12 +3,14 @@
 
 install:
   - gem install compass
-  - npm install --global grunt-cli bower cordova npm
+  - npm install -g grunt-cli bower cordova npm@next
   - npm install
 
 build: off
 
 test_script:
+  - node --version
+  - npm --version
   - cd ..
   - del /s /q cordova-test-app
   - git clone https://github.com/hypery2k/cordova-demo-app.git cordova-test-app

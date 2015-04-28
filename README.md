@@ -1,7 +1,7 @@
 # Cordova sqlite storage adapter
 
 
-[![Build Status](https://travis-ci.org/hypery2k/cordova-sqllite-plugin.svg?branch=master)]
+[![Build Status](https://travis-ci.org/hypery2k/cordova-sqllite-plugin.svg?branch=master)](https://travis-ci.org/hypery2k/cordova-sqllite-plugin)
 
 > Native interface to sqlite in a Cordova/PhoneGap plugin for Android, iOS, Windows Universal (8.1), Amazon Fire-OS, and WP(7/8) with API similar to HTML5/[Web SQL API](http://www.w3.org/TR/webdatabase/).
 

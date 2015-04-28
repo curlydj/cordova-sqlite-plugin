@@ -1,0 +1,11 @@
+language: objective-c
+env:
+  - PLATFORM=ios
+  - PLATFORM=android
+script:
+  - grunt "ci:$PLATFORM" "$PLATFORM"
+before_install:
+  - sudo gem install compass
+  - npm install --global grunt-cli bower cordova
+  - npm install
+  - bower install

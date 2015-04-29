@@ -20,5 +20,5 @@ test_script:
   - grunt build
   - cordova platform add wp8
   - cordova build wp8
-  - cordova plugin add cordova-sqlite-plugin
+  - cordova plugin add ../cordova-sqlite-plugin
   - cordova build wp8

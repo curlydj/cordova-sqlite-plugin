@@ -8,7 +8,7 @@
 
 #import "SQLitePlugin.h"
 
-#import "sqlite3.h"
+#include "common.h"
 
 #include <regex.h>
 
@@ -149,6 +149,8 @@ static void sqlite_regexp(sqlite3_context* context, int argc, sqlite3_value** va
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unable to open DB"];
                 return;
             } else {
+                initCSLTokenizer(db);
+
                 sqlite3_create_function(db, "regexp", 2, SQLITE_ANY, NULL, &sqlite_regexp, NULL, NULL);
 
                 // for SQLCipher version:

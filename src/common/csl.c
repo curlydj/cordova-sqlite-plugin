@@ -1,6 +1,6 @@
 #include "csl.h"
 
-#define STREND_EQ(STR) (0 == memcmp(len - sizeof(STR), &aBuf[START], sizeof(STR)))
+#define STREND_EQ(STR) (0 == memcmp(STR, &aBuf[len - sizeof(STR)], sizeof(STR)))
 #define DELETE_LAST(COUNT) (*pnBuf = len - COUNT)
 
 static void fts5CSLDelete(Fts5Tokenizer *pTok){
@@ -111,7 +111,7 @@ static void fts5CSLRemoveCase (char *aBuf, int *pnBuf) {
     }
   } else if (len > 3) {
     if (STREND_EQ("e") || STREND_EQ("i")) {
-      fts5CSLPalatalise(1);
+      fts5CSLPalatalise(aBuf, pnBuf);
     } else if (STREND_EQ("u") || STREND_EQ("y")) {
       DELETE_LAST(1);
     } else if (
@@ -203,7 +203,7 @@ fts5_api *fts5_api_from_db (sqlite3 *db) {
   fts5_api *pRet = 0;
   sqlite3_stmt *pStmt = 0;
 
-  if (SQLITE_OK == sqlite3_prepare(db, "SELECT fts5()", -1, &pStmt), 0)
+  if (SQLITE_OK == sqlite3_prepare(db, "SELECT fts5()", -1, &pStmt, 0)
     && SQLITE_ROW == sqlite3_step(pStmt)
     && sizeof(pRet) == sqlite3_column_bytes(pStmt, 0)
   ) {
@@ -218,12 +218,11 @@ int initCSLTokenizer (sqlite3 *db) {
   return api->xCreateTokenizer(
     api, 
     "csl", 
-    (void*) api, 
-    &((Fts5Tokenizer) {
+    (void*) api,
+    &((fts5_tokenizer) {
         fts5CSLCreate, 
         fts5CSLDelete, 
         fts5CSLTokenize
     }),
-    0
-  )
+  0);
 }

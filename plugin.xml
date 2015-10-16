@@ -80,8 +80,8 @@ SOFTWARE.
         <header-file src="src/common/sqlite3.h" />
         <source-file src="src/common/sqlite3.c" />
 
-        <header-file src="src/common/cls.h" />
-        <source-file src="src/common/cls.c" />
+        <header-file src="src/common/csl.h" />
+        <source-file src="src/common/csl.c" />
 
         <header-file src="src/common/common.h" />
 
